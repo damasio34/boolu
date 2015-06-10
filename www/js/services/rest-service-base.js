@@ -40,16 +40,10 @@
                 return Restangular.one(this.mainRoute, id).get();
             };
 
-            this.create = function(novo) {
-                if (!this.mainRoute) throw "mainRoute não configurada.";
+            this.incluir = function(model) {
+                if (!self.mainRoute) throw "mainRoute não configurada.";
 
-                return Restangular.all(this.mainRoute).post(novo, {
-                    headers:{
-                        'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
-                        'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
-                        'Content-Type':'application/json'
-                    }
-                });
+                return Restangular.all(self.mainRoute).post(model);
             };
 
             this.edit = function(id, data){
