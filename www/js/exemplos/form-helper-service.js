@@ -5,6 +5,7 @@
 (function(angular) {
     var app = angular.module('anywhere.services');
     app.service('FormHelperService', function(EventManager, AppNotificationsService, $modal, $location, focusService, kDialogo, ConfiguracoesService) {
+        
         var self = this;
         var _setDefaultRoute = function(defaultRoute) {
             self.defaultRoute = defaultRoute;

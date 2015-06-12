@@ -1,7 +1,7 @@
 (function(angular) {
 
 	var services = angular.module('boolu.services');
-	services.factory('peladeiroService', function(RestServiceBase) {
+	services.factory('PeladeiroService', function(RestServiceBase) {
 
 		var _service = function() {};
 

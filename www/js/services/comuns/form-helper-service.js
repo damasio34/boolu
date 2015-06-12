@@ -4,8 +4,8 @@
 */
 (function(angular) {
 
-    var service = angular.module('boolu.services');
-    service.services('FormHelperService', function($location, FocusService) {
+    var services = angular.module('boolu.services');
+    services.service('FormHelperService', function($location) {
 
         var self = this;
 
@@ -31,33 +31,25 @@
         // Realiza o processo de alteração do modelo imperativamente.
         var _salvarAlteracao = function(model, $modelService, $scope) {
 
-            return $modelService.alterar(model).then(function(data) {
+            return $modelService.editar(model).success(function(data) {
                 $scope.OriginalModel = angular.copy(model);
             }, function(ex) { throw ex; });
 
         };
 
-        // Verifica se os campos do formulario atendem as regras estabelecidas.
-        var _formularioEhValido = function($scope) {
-            if (!$scope.Formulario) throw "Objeto Formulário não definido";
-            return $scope.Formulario.$valid;
-        };
-
         var _canSubmit = function($scope) {
-            return $scope.formularioEhValido() && $scope.usuarioAlterouFormulario();
+            return $scope.usuarioAlterouFormulario();
         };
 
         // Determina o que fazer quando o usuário submter o formulário.
         var _submitForm = function($scope) {
-            if ($scope.formularioEhValido()) {
-                if ($scope.modoEdicao) {
-                    if (!$scope.usuarioAlterouFormulario()) {
-                        // AppNotificationsService.logWarning('Não há alterações a serem salvas.');
-                        return;
-                    };
-                    return $scope.salvarAlteracao();
-                } else return $scope.salvarInclusao();
-            }
+            if ($scope.modoEdicao) {
+                if (!$scope.usuarioAlterouFormulario()) {
+                    // AppNotificationsService.logWarning('Não há alterações a serem salvas.');
+                    return;
+                };
+                return $scope.salvarAlteracao();
+            } else return $scope.salvarInclusao();
         };
 
         // verifica se há alterações a serem desfeitas no formulario.
@@ -100,11 +92,11 @@
             //cria função padrão para obter o registro solicitado
             var obterRegistro = function(id, $scope, $modelService, sucesso, erro) {
                 $modelService.getById(id).success(function(model) {
-                    var hasValue = model.getResponse().HasValue != null;
+                    var hasValue = !!model;
 
                     if (hasValue) $scope.edit(model);
 
-                    sucesso(model, model.getResponse(), hasValue);
+                    sucesso(model, model, hasValue);
 
                 }, function(ex) {
                     throw ex;
@@ -140,9 +132,6 @@
         this.applySettings = function($controller, $scope, $modelService) {
             if (!$scope) throw "Variável '$scope' precisa ser definda";
 
-            if(!$scope.Formulario)
-                throw "Objeto formulario não definido, por convenção toda teg form deve ter o nome formulario";
-
             // $modelService.setErrorHandler(AppNotificationsService.showException);
 
             $scope.enabledValidations = true;
@@ -152,9 +141,6 @@
             };
             $scope.salvarAlteracao = function() {
                 return _salvarAlteracao($scope.Model, $modelService, $scope);
-            };
-            $scope.formularioEhValido = function() {
-                return _formularioEhValido($scope);
             };
             $scope.canSubmit = function() {
                 return _canSubmit($scope);
@@ -173,12 +159,6 @@
             };
             $scope.edit = function(model) {
                 return _edit(model, $scope);
-            };
-            $scope.setFocus = function(chave) {
-                return _setFocus(chave);
-            };
-            $scope.setFocusById = function(id) {
-                return _setFocusById(id);
             };
             $controller.editById = function(id) {
                 return _editByid(id, $scope, $modelService);

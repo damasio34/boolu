@@ -1,15 +1,20 @@
 var app = angular.module('boolu.controllers');
 
-app.controller('PeladeiroIncluirEditarController', function($scope, $location, peladeiroService) {
+app.controller('PeladeiroIncluirEditarController', function($scope, $stateParams, PeladeiroService, FormHelperService) {
 
-	$scope.Model = {};
+	FormHelperService.applySettings(this, $scope, PeladeiroService);
+	this.setDefaultRoute('fiscal/classificacoesFiscais/listar');
 
-	$scope.incluir = function () {
-		peladeiroService.incluir($scope.Model).then(function() {
-	    	$location.path("#/app/dashboard");
-	  	}, function() {
-		    console.log("There was an error saving");
-	  	});
-	}
+	this.editById($stateParams.id);
+
+	// $scope.Model = {};
+
+	// $scope.incluir = function () {
+	// 	peladeiroService.incluir($scope.Model).then(function() {
+	//     	$location.path("#/app/dashboard");
+	//   	}, function() {
+	// 	    console.log("There was an error saving");
+	//   	});
+	// }
 
 });

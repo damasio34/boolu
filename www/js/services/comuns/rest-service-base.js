@@ -62,13 +62,14 @@
                 });
             };
 
-            this.editar = function(id, model){
+            this.editar = function(model){
 
-                if (!model.put) throw "Objeto a ser alterado inválido";
+                // if (!model.put) throw "Objeto a ser alterado inválido";
+                if (!this.mainRoute) throw "mainRoute não configurada.";
 
                 // return model.put();
 
-                return $http.put(self.urlBase + self.mainRoute + '/' + id, model, {
+                return $http.put(self.urlBase + self.mainRoute + '/' + model.objectId, model, {
                     headers:{
                         'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                         'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,

@@ -1,8 +1,8 @@
 var app = angular.module('boolu.controllers');
 
-app.controller('PeladeiroListarController', function($scope, $location, peladeiroService) {
+app.controller('PeladeiroListarController', function($scope, PeladeiroService) {
 
-	peladeiroService.getAll().success(function(data) {
+	PeladeiroService.getAll().success(function(data) {
 
 		$scope.items = data.results;
 
