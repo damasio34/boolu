@@ -1,7 +1,7 @@
 var app = angular.module('boolu');
 
 app.config(function($stateProvider, $urlRouterProvider) {
-    
+
     // Rotas ou states
     $stateProvider
 
@@ -12,7 +12,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		controller: 'MainController'
     })
 
-    .state('app.dashboard',{
+    .state('app.dashboard', {
         url:'/dashboard',
         views: {
 	        'mainContent' :{
@@ -22,7 +22,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       	}
     })
 
-    .state('app.peladeiroListar',{
+    .state('app.peladeiroListar', {
         url:'/peladeiro/listar',
         views: {
 	        'mainContent' :{
@@ -32,14 +32,24 @@ app.config(function($stateProvider, $urlRouterProvider) {
       	}
     })
 
-    .state('app.peladeiroIncluir',{
+    .state('app.peladeiroIncluir', {
         url:'/peladeiro/incluir',
         views: {
 	        'mainContent' :{
-        		templateUrl:'views/peladeiro-incluir.html',
-        		controller:'PeladeiroIncluirController'
+        		templateUrl:'views/peladeiro-incluir-editar.html',
+        		controller:'PeladeiroIncluirEditarController'
 	        }
       	}
+    })
+
+    .state('app.peladeiroEditar', {
+        url:'/peladeiro/editar/:id',
+        views: {
+            'mainContent' :{
+                templateUrl:'views/peladeiro-incluir-editar.html',
+                controller:'PeladeiroIncluirEditarController'
+            }
+        }
     })
 
     ;
