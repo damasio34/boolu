@@ -1,13 +1,13 @@
-(function(angular){
+(function(angular) {
 
 	var services = angular.module('boolu.services');
-	services.factory('peladeiroService', function(restService) {
+	services.factory('peladeiroService', function(RestServiceBase) {
 
 		var _service = function() {};
 
-		var base = new restService();
+		var base = new RestServiceBase();
 		base.setMainRoute('Peladeiro');
-		// Herdando a implementação de restService
+		// Herdando a implementação de RestServiceBase
 		_service.prototype = base;
 
 		return new _service();
