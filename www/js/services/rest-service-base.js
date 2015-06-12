@@ -3,7 +3,7 @@
     var services = angular.module('boolu.services');
     services.factory('restService', function($http, PARSE_CREDENTIALS, Restangular) {
 
-        // console.log(Restangular.defaultHeaders);
+        console.log(Restangular.defaultHeaders);
 
         var _service = function() {
 
@@ -23,14 +23,14 @@
             this.getAll = function() {
                 if (!self.mainRoute) throw "mainRoute não configurada.";
 
-                return Restangular.all(this.mainRoute).getList();
+                // return Restangular.all(this.mainRoute).getList();
 
-                // return $http.get('https://api.parse.com/1/classes/' + self.mainRoute, {
-                //     headers:{
-                //         'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
-                //         'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
-                //     }
-                // });
+                return $http.get('https://api.parse.com/1/classes/' + self.mainRoute, {
+                    headers:{
+                        'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
+                        'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
+                    }
+                });
             };
     	
             this.getById = function(id) {

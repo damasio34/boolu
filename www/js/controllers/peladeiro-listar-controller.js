@@ -2,14 +2,11 @@ var app = angular.module('boolu.controllers');
 
 app.controller('PeladeiroListarController', function($scope, $location, peladeiroService) {
 	
-	$scope.Model = {};
+	peladeiroService.getAll().success(function(data) {
 
-	$scope.incluir = function () { 
-		peladeiroService.incluir($scope.Model).then(function() {
-	    	$location.path("#/app/dashboard");
-	  	}, function() {
-		    console.log("There was an error saving");
-	  	}); 
-	}
+		// console.log(data);
+		$scope.items = data.results;
+
+	});
 
 });
