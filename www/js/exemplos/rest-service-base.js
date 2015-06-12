@@ -2,7 +2,7 @@
 
 	var services = angular.module('anywhere.services');
 
-	services.factory('RestServiceBase', function(Restangular, AppNotificationsService) {
+	services.factory('RestServiceBase', function(Restangular,) {
 
 		var _service = function(){
 

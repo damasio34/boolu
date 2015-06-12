@@ -14,60 +14,60 @@ var app = angular.module('boolu');
 
 // });
 
-app.config(function (RestangularProvider) {
+// app.config(function (RestangularProvider) {
 
-    RestangularProvider.setBaseUrl('https://api.parse.com/1/classes/');
+//     RestangularProvider.setBaseUrl('https://api.parse.com/1/classes/');
 
-    RestangularProvider.setRestangularFields({
-        id: 'objectId',
-    });
+//     RestangularProvider.setRestangularFields({
+//         id: 'objectId',
+//     });
 
-    RestangularProvider.setDefaultHeaders({
-        'X-Parse-Application-Id': 'xQzgkV2A0PH4p4wdAadPvmazedrD4xp8dl1IA5PM',
-        'X-Parse-REST-API-Key': 'TgJ2wRXJaWJBjNLaDnxubD28xWIluHObEIOD447I'
-    });
+//     RestangularProvider.setDefaultHeaders({
+//         'X-Parse-Application-Id': 'xQzgkV2A0PH4p4wdAadPvmazedrD4xp8dl1IA5PM',
+//         'X-Parse-REST-API-Key': 'TgJ2wRXJaWJBjNLaDnxubD28xWIluHObEIOD447I'
+//     });
 
-    // RestangularProvider.setDefaultHttpFields({
-    //     headers: {
-    //         'X-Parse-Application-Id': 'xQzgkV2A0PH4p4wdAadPvmazedrD4xp8dl1IA5PM',
-    //         'X-Parse-REST-API-Key': 'TgJ2wRXJaWJBjNLaDnxubD28xWIluHObEIOD447I'
-    //     }
-    // });
+//     // RestangularProvider.setDefaultHttpFields({
+//     //     headers: {
+//     //         'X-Parse-Application-Id': 'xQzgkV2A0PH4p4wdAadPvmazedrD4xp8dl1IA5PM',
+//     //         'X-Parse-REST-API-Key': 'TgJ2wRXJaWJBjNLaDnxubD28xWIluHObEIOD447I'
+//     //     }
+//     // });
 
-    // RestangularProvider.addFullRequestInterceptor(function (element, operation, route, url, headers, params, httpConfig) {
-        
-    //     headers = {
-    //         'X-Parse-Application-Id': 'xQzgkV2A0PH4p4wdAadPvmazedrD4xp8dl1IA5PM',
-    //         'X-Parse-REST-API-Key': 'TgJ2wRXJaWJBjNLaDnxubD28xWIluHObEIOD447I'
-    //     };
+//     // RestangularProvider.addFullRequestInterceptor(function (element, operation, route, url, headers, params, httpConfig) {
 
-    //     return {
-    //         element: element,
-    //         headers: headers,
-    //         params: params,
-    //         httpConfig: httpConfig
-    //     };
+//     //     headers = {
+//     //         'X-Parse-Application-Id': 'xQzgkV2A0PH4p4wdAadPvmazedrD4xp8dl1IA5PM',
+//     //         'X-Parse-REST-API-Key': 'TgJ2wRXJaWJBjNLaDnxubD28xWIluHObEIOD447I'
+//     //     };
 
-    // });
+//     //     return {
+//     //         element: element,
+//     //         headers: headers,
+//     //         params: params,
+//     //         httpConfig: httpConfig
+//     //     };
 
-    // RestangularProvider.setFullRequestInterceptor(function(element, operation, route, url, headers, params, httpConfig) {
-          
-    //     headers = {
-    //         'X-Parse-Application-Id': 'xQzgkV2A0PH4p4wdAadPvmazedrD4xp8dl1IA5PM',
-    //         'X-Parse-REST-API-Key': 'TgJ2wRXJaWJBjNLaDnxubD28xWIluHObEIOD447I'
-    //     };
+//     // });
 
-    //     return {
-    //         element: element,
-    //         params: params,
-    //         headers: headers,
-    //         httpConfig: httpConfig
-    //     };
-    // });
+//     // RestangularProvider.setFullRequestInterceptor(function(element, operation, route, url, headers, params, httpConfig) {
 
-    // Serviço de 'get' de erros
-    // RestangularProvider.setErrorInterceptor(function (response, deferred, responseHandler) {
-    //     showException(response);
-    // });
+//     //     headers = {
+//     //         'X-Parse-Application-Id': 'xQzgkV2A0PH4p4wdAadPvmazedrD4xp8dl1IA5PM',
+//     //         'X-Parse-REST-API-Key': 'TgJ2wRXJaWJBjNLaDnxubD28xWIluHObEIOD447I'
+//     //     };
 
-});
+//     //     return {
+//     //         element: element,
+//     //         params: params,
+//     //         headers: headers,
+//     //         httpConfig: httpConfig
+//     //     };
+//     // });
+
+//     // Serviço de 'get' de erros
+//     // RestangularProvider.setErrorInterceptor(function (response, deferred, responseHandler) {
+//     //     showException(response);
+//     // });
+
+// });

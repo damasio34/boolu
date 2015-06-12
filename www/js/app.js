@@ -1,11 +1,11 @@
 angular.module('boolu', [
 
     // lib
-    'ionic', 
-    'restangular',
+    'ionic',
+    // 'restangular',
 
     // modulos
     'boolu.services',
     'boolu.controllers'
-    
+
 ]);

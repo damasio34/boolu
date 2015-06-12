@@ -5,7 +5,7 @@ angular.module('boolu').run(function($ionicPlatform, $state) {
         // for form inputs)
         if(window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard)
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-        
+
         if(window.StatusBar) StatusBar.styleDefault();
 
     });

@@ -1,7 +1,7 @@
 (function(angular){
 
     var services = angular.module('boolu.services');
-    services.factory('RestServiceBase', function($http, PARSE_CREDENTIALS, Restangular) {
+    services.factory('RestServiceBase', function($http, PARSE_CREDENTIALS) {
 
         // console.log(Restangular.defaultHeaders);
 
