@@ -1,12 +1,17 @@
-angular.module('boolu', [
+(function(angular){
+	
+	angular.module('boolu', [
 
-    // lib
-    'ionic',
-    // 'restangular',
-    'mp.autoFocus',
+	    // lib
+	    'ionic',
+	    // 'restangular',
+	    'mp.autoFocus',
+	    'ng-mfb',
 
-    // modulos
-    'boolu.services',
-    'boolu.controllers'
+	    // modulos
+	    'boolu.services',
+	    'boolu.controllers'
 
-]);
+	]);
+
+})(angular);

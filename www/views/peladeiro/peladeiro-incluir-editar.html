@@ -11,8 +11,12 @@
 				<input type="text" ng-model="Model.sobrenome" placeholder="sobrenome">
 			</label>
 			<label class="item item-input item-stacked-label">
+				<span class="input-label">DDD</span>
+				<input type="number" ng-model="Model.ddd" placeholder="DDD" maxlength="3">
+			</label>
+			<label class="item item-input item-stacked-label">
 				<span class="input-label">Telefone</span>
-				<input type="number" ng-model="Model.telefone" placeholder="telefone">
+				<input type="number" ng-model="Model.telefone" placeholder="telefone" maxlength="9">
 			</label>
 		</div>
 
@@ -22,6 +26,6 @@
 <ion-footer-bar class="bar-dark">
 	<div class="button-bar">
 		<button class="button button-dark" ng-click="submitForm()">Salvar</button>
-	  	<button class="button button-dark">Cancelar</button>
+	  	<button class="button button-dark" ng-click="sair()">Cancelar</button>
 	</div>
 </ion-footer-bar>

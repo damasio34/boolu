@@ -1,11 +1,9 @@
-/*
-    -- Form Helper --
-    Serviço que centraliza as operações básicas de um formulário de inclusão/alteração de uma entidade.
-*/
+// -- Form Helper --
+// Serviço que centraliza as operações básicas de um formulário de inclusão/alteração de uma entidade.
 (function(angular) {
 
     var services = angular.module('boolu.services');
-    services.service('FormHelperService', function($location) {
+    services.service('FormHelperService', function($location, IonicPopupService, $state) {
 
         var self = this;
 
@@ -21,20 +19,19 @@
 
         // Realiza o processo de inclusão do modelo imperativamente.
         var _salvarInclusao = function(model, $modelService, $scope) {
-
             return $modelService.incluir(model).success(function(data) {
-                if (data.getResponse().Ok === true) $location.path(self.defaultRoute);
+                IonicPopupService.alert("Sucesso", "Dados cadastrados com sucess!", 3000);
+                // ToDo: Trocar para state
+                $location.path(self.defaultRoute);
+                // $state.go(self.defaultRoute)
             }, function(ex) { throw ex; });
-
         };
 
         // Realiza o processo de alteração do modelo imperativamente.
         var _salvarAlteracao = function(model, $modelService, $scope) {
-
             return $modelService.editar(model).success(function(data) {
                 $scope.OriginalModel = angular.copy(model);
             }, function(ex) { throw ex; });
-
         };
 
         var _canSubmit = function($scope) {
@@ -67,25 +64,6 @@
             return objeto == null || objeto == undefined;
         };
 
-        // Determina comportamento que o formulário terá quando o usuário clicar em 'Sair'.
-        // var _sair = function(urlToRedirect, $scope) {
-        //     if ($scope.usuarioAlterouFormulario()) {
-        //         // confirma se o usuário quer perder os dados não salvos.
-        //         var modalInstance = $modal.open({
-        //             templateUrl: "myModalContent.html",
-        //             controller: 'ModalInstanceCtrl',
-        //             resolve: {
-        //                 Model: function() {
-        //                     return $scope.Model;
-        //                 }
-        //             }
-        //         });
-        //         modalInstance.result.then(function() {
-        //             $location.path(urlToRedirect);
-        //         });
-        //     } else $location.path(urlToRedirect);
-        // };
-
         var _editByid = function(id, $scope, $modelService) {
             $scope.modoEdicao = true;
 
@@ -115,6 +93,7 @@
                 else obterRegistro(id, $scope, $modelService, sucesso, erro);
             });
         };
+
         var _edit = function(model, $scope) {
             // $scope.carregado = true;
             $scope.modoEdicao = true;
@@ -122,17 +101,25 @@
             $scope.OriginalModel = angular.copy(model);
         };
 
-        var _setModel = function (defaultModel, $scope) {
+        var _novoRegistro = function (defaultModel, $scope) {
             var novoModel = defaultModel || {};
             $scope.Model = novoModel;
             $scope.OriginalModel = angular.copy(novoModel);
             $scope.carregado = true;
         };
 
+        // Determina comportamento que o formulário terá quando o usuário clicar em 'Sair'.
+        var _sair = function($scope) {
+            if ($scope.usuarioAlterouFormulario()) {
+                // confirma se o usuário quer perder os dados não salvos.
+                IonicPopupService.confirm("Alteração não salvas", "Deseja sair sem salvar as alterações?", 
+                    function() { $location.path(self.defaultRoute);
+                });
+            } else $location.path(self.defaultRoute);
+        };
+
         this.applySettings = function($controller, $scope, $modelService) {
             if (!$scope) throw "Variável '$scope' precisa ser definda";
-
-            // $modelService.setErrorHandler(AppNotificationsService.showException);
 
             $scope.enabledValidations = true;
 
@@ -154,8 +141,8 @@
             $scope.desfazerAlteracoesDoUsuario = function() {
                 return _desfazerAlteracoesDoUsuario($scope);
             };
-            $scope.sair = function(urlToRedirect) {
-                return _sair(urlToRedirect, $scope)
+            $scope.sair = function() {
+                return _sair($scope)
             };
             $scope.edit = function(model) {
                 return _edit(model, $scope);

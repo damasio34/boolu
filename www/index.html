@@ -4,8 +4,24 @@
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
         <title>Boolu</title>
+
         <!-- compiled css output -->
         <link href="css/ionic.app.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css">
+        <link href="lib/ng-mfb/mfb/dist/mfb.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Raleway:100,200,300,400' rel='stylesheet' type='text/css'>
+
+        <!-- build:js modernizr.touch.js -->
+        <script type="text/javascript" src="lib/ng-mfb/mfb/dist/lib/modernizr.touch.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:css mfb.css -->
+        <link href="lib/ng-mfb/mfb/dist/mfb.css" rel="stylesheet"/>
+        <!-- endbuild -->
+
         <!-- ionic/angularjs js -->
         <script src="lib/ionic/js/ionic.bundle.js"></script>
         <!-- cordova script (this will be a 404 during development) -->
@@ -16,29 +32,59 @@
 
         <!-- lib  -->
         <script type="text/javascript" src="lib/underscore/underscore-min.js"></script>
-        <script type="text/javascript" src="lib/angular-auto-focus/angular-auto-focus.js"></script>
         <!-- <script src="lib/restangular/src/restangular.js"></script> -->
+        <script type="text/javascript" src="lib/angular-auto-focus/angular-auto-focus.js"></script>
+
+        <!-- build:js modernizr.touch.js -->
+        <script type="text/javascript" src="lib/ng-mfb/mfb/dist/lib/modernizr.touch.js"></script>
+        <!-- endbuild -->
+        <script type="text/javascript" src="lib/ng-mfb/mfb/dist/mfb.js"></script>
+        <!-- build:js mfb-directive.js -->
+        <script src="lib/ng-mfb/src/mfb-directive.js"></script>
+        <!-- endbuild -->
 
         <!-- app -->
         <script src="js/app.js"></script>
-        <script src="js/app-config.js"></script>
+        <!-- <script src="js/app-config.js"></script> -->
         <script src="js/app-run.js"></script>
         <script src="js/app-state.js"></script>
 
         <!-- services -->
         <script src="js/services/services.js"></script>
-        <script src="js/services/comuns/services-value.js"></script>
+        <script src="js/services/services-value.js"></script>
         <script src="js/services/comuns/rest-service-base.js"></script>
         <script src="js/services/comuns/form-helper-service.js"></script>
+        <script src="js/services/comuns/list-helper-service.js"></script>
+        <script src="js/services/comuns/ionic-popup-service.js"></script>
 
-        <script src="js/services/dashboard-service.js"></script>
-        <script src="js/services/peladeiro-service.js"></script>
+        <script src="js/services/dashboard/dashboard-service.js"></script>
+        <script src="js/services/peladeiro/peladeiro-service.js"></script>
+        <script src="js/services/pelada/pelada-service.js"></script>
+        <script src="js/services/grupo/grupo-service.js"></script>
+        <script src="js/services/lancamento/lancamento-service.js"></script>
 
         <!-- controllers -->
         <script src="js/controllers/controllers.js"></script>
-        <script src="js/controllers/main-controller.js"></script>
-        <script src="js/controllers/dashboard-controller.js"></script>
-        <script src="js/controllers/peladeiro-listar-controller.js"></script>
-        <script src="js/controllers/peladeiro-incluir-editar-controller.js"></script>
+
+        <!-- <script src="js/app-controller.js"></script> -->
+
+        <!-- Dashboard -->
+        <script src="js/controllers/dashboard/dashboard-controller.js"></script>
+
+        <!-- Peladeiro -->
+        <script src="js/controllers/peladeiro/peladeiro-listar-controller.js"></script>
+        <script src="js/controllers/peladeiro/peladeiro-incluir-editar-controller.js"></script>
+
+        <!-- Pelada -->
+        <script src="js/controllers/pelada/pelada-listar-controller.js"></script>
+        <script src="js/controllers/pelada/pelada-incluir-editar-controller.js"></script>
+
+        <!-- Grupo -->
+        <script src="js/controllers/grupo/grupo-listar-controller.js"></script>
+        <script src="js/controllers/grupo/grupo-incluir-editar-controller.js"></script>
+
+        <!-- Lançamento -->
+        <script src="js/controllers/lancamento/lancamento-listar-controller.js"></script>
+        <script src="js/controllers/lancamento/lancamento-incluir-editar-controller.js"></script>
     </body>
 </html>

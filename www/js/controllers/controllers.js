@@ -1,1 +1,5 @@
-angular.module('boolu.controllers', []);
+(function(angular){
+
+	angular.module('boolu.controllers', []);
+
+})(angular);

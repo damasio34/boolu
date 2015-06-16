@@ -1,1 +1,5 @@
-angular.module('boolu.services', []);
+(function(angular) {
+
+	angular.module('boolu.services', []);
+
+})(angular);
