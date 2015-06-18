@@ -6,7 +6,7 @@
 		$scope.Model = {
 			usuario: 'damasio34',
 			senha: '12345'
-		}
+		};
 
 		$scope.login = function () {
 			LoginService.efetuarLogin($scope.Model.usuario, $scope.Model.senha);

@@ -2,7 +2,7 @@
 
 	var services = angular.module('boolu.services');
 	services.factory('LoginService',
-		function($state, $http, RestServiceBase, PARSE_CREDENTIALS, LocalStorageService, CryptSha1Service) {
+		function($state, $http, RestServiceBase, PARSE_CREDENTIALS, WebStorageService, CryptSha1Service) {
 
 		var _service = function() {
 
@@ -28,7 +28,7 @@
 
                 }).success(function(data, status) {
 					if (status == 200 && !!data.sessionToken) {
-						LocalStorageService.set('_$token', data.sessionToken);
+						WebStorageService.setSessionStorage('_$token', data.sessionToken);
 						$state.go('app.dashboard');
 					}
                 }).error(function (data, status) {
