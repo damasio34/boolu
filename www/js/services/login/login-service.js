@@ -1,39 +1,40 @@
 (function(angular) {
 
 	var services = angular.module('boolu.services');
-	services.factory('LoginService', 
-		function($state, $http, RestServiceBase, PARSE_CREDENTIALS, LocalStorageService) {
+	services.factory('LoginService',
+		function($state, $http, RestServiceBase, PARSE_CREDENTIALS, LocalStorageService, CryptSha1Service) {
 
 		var _service = function() {
 
 			this.efetuarLogin = function (_usuario, _senha) {
-                if (!self.mainRoute) throw "mainRoute não configurada.";
-
                 // var whereQuery = {type: subtype};
 
-                return $http.get(self.urlBase + self.mainRoute, {
+                console.log(CryptSha1Service.hash(_senha));
+
+                return $http.get('https://api.parse.com/1/login', {
 
                     headers:{
                         'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
                         'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
-                        'X-Parse-Revocable-Session': '1',
-                        // 'Content-Type': 'application/x-www-form-urlencoded'
+                        'Content-Type': 'application/x-www-form-urlencoded'
                     },
-                    params:  { 
-                     	username: _usuario, password: _senha,
+                    params:  {
+                     	username: _usuario, password: CryptSha1Service.hash(_senha),
                       	// where: {username: _usuario, password: _senha},
                      	// limit: 2,
                      	// count: 1
                      	// include: "something"
                     }
 
-                }).success(function(data) {
-					if (data.results.length == 1) {
-						LocalStorageService.set('_$token', data.results.sessionToken);
-						console.log(data.sessionToken);
+                }).success(function(data, status) {
+					if (status == 200 && !!data.sessionToken) {
+						LocalStorageService.set('_$token', data.sessionToken);
 						$state.go('app.dashboard');
 					}
-                });
+                }).error(function (data, status) {
+                	console.log(status);
+					console.log(data);
+				});
 			};
 		};
 

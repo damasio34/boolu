@@ -1,5 +1,5 @@
 (function(angular){
-	
+
 	angular.module('boolu', [
 
 	    // lib
