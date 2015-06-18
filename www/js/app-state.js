@@ -6,12 +6,19 @@
         // Rotas ou states
         $stateProvider
 
+        // Login
+        .state('login', {
+            url: "/login",            
+            templateUrl: "views/login/login.html",
+            controller: 'LoginController'
+        })
+
         // App
         .state('app', {
     		url: "/app",
     		abstract: true,
-    		templateUrl: "views/app.html"
-    		// controller: 'AppController'
+    		templateUrl: "views/app.html",
+    		controller: 'AppController'
         })
 
         // Dashboard
