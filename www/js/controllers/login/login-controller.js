@@ -10,7 +10,9 @@
 
 		$scope.signIn = function (form) {
 			if(form.$valid) {
-				LoginService.efetuarLogin($scope.Model.usuario, $scope.Model.senha);
+				LoginService.efetuarLogin($scope.Model.usuario, $scope.Model.senha).success(function(){
+					$state.go('app.dashboard');
+				});
 			};
 		};
 

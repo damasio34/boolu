@@ -1,13 +1,20 @@
 (function(angular){
 
 	var controllers = angular.module('boolu.controllers');
-	controllers.controller('AppController', function($scope, $state, WebStorageService) {
+	controllers.controller('AppController', function($scope, $state, LoginService) {
 
-		var token = WebStorageService.getSessionStorage('_$token');
-		if (!token || token == null) {
+		if (!LoginService.usuarioAutenticado()) {
 			$state.go('login');
 			throw "Usuário não autenticado.";
 		};
+
+		$scope.Sair = function() { 
+			LoginService.logOut().success(function() {
+				$state.go('login');
+			});
+		};
+
+		// LoginService.getUsuario();
 
 	});
 
