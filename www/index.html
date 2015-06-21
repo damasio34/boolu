@@ -26,14 +26,18 @@
         <script src="lib/ionic/js/ionic.bundle.js"></script>
         <!-- cordova script (this will be a 404 during development) -->
         <script src="cordova.js"></script>
+
+        <link href="css/style.css" rel="stylesheet">
     </head>
     <body ng-app="boolu">
-        <ion-nav-view animation="slide-left-right"></ion-nav-view>
+        <ion-nav-view class="padding" animation="slide-left-right"></ion-nav-view>
 
         <!-- lib  -->
+        <!--<script type="text/javascript" src="lib/angular-messages/angular-messages.min.js"></script> -->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-messages.min.js"></script>  
+        <script type="text/javascript" src="lib/angular-auto-focus/angular-auto-focus.js"></script>
         <script type="text/javascript" src="lib/underscore/underscore-min.js"></script>
         <!-- <script src="lib/restangular/src/restangular.js"></script> -->
-        <script type="text/javascript" src="lib/angular-auto-focus/angular-auto-focus.js"></script>
         <script type="text/javascript" src="lib/ng-mfb/mfb/dist/lib/modernizr.touch.js"></script>
         <script type="text/javascript" src="lib/ng-mfb/mfb/dist/mfb.js"></script>
         <script type="text/javascript" src="lib/ng-mfb/src/mfb-directive.js"></script>

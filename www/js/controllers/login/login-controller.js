@@ -8,8 +8,10 @@
 			senha: '12345'
 		};
 
-		$scope.login = function () {
-			LoginService.efetuarLogin($scope.Model.usuario, $scope.Model.senha);
+		$scope.signIn = function (form) {
+			if(form.$valid) {
+				LoginService.efetuarLogin($scope.Model.usuario, $scope.Model.senha);
+			};
 		};
 
 	});

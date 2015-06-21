@@ -9,6 +9,7 @@
     "underscore": "~1.8.3",
     "angular-auto-focus": "~1.0.3",
     "ng-mfb": "~0.6.1",
-    "sha1": "https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"
+    "sha1": "https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js",
+    "angular-messages": "~1.4.1"
   }
 }

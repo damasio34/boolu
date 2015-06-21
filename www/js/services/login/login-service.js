@@ -9,7 +9,7 @@
 			this.efetuarLogin = function (_usuario, _senha) {
                 // var whereQuery = {type: subtype};
 
-                console.log(CryptSha1Service.hash(_senha));
+                // console.log(CryptSha1Service.hash(_senha));
 
                 return $http.get('https://api.parse.com/1/login', {
 

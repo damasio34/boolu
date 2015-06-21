@@ -4,6 +4,7 @@
 
 	    // lib
 	    'ionic',
+	    'ngMessages',
 	    // 'restangular',
 	    'mp.autoFocus',
 	    'ng-mfb',
