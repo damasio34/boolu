@@ -1,20 +1,27 @@
 (function(angular){
 
     var services = angular.module('boolu.services');
-    services.factory('RestServiceBase', function($http, PARSE_CREDENTIALS) {
+    services.factory('RestServiceBase', function($http, PARSE_CREDENTIALS, WebStorageService) {
 
         // console.log(Restangular.defaultHeaders);
 
         var _service = function() {
 
             self = this;
-
             this.mainRoute = undefined;
             this.urlBase = 'https://api.parse.com/1/classes/';
 
+            this.getToken = function() {
+                var token = WebStorageService.getLocalStorage('_$token') || WebStorageService.getSessionStorage('_$token');
+
+                if (!token) throw "Usuário não autenticado, efetue login";
+                else return token;
+            };
+
             this.headers = {
                 'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
-                'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
+                'X-Parse-REST-API-Key': PARSE_CREDENTIALS.REST_API_KEY,
+                'X-Parse-Session-Token': this.getToken(),
             };
 
             this.setMainRoute = function(mainRoute) {
@@ -26,12 +33,7 @@
 
                 // return Restangular.all(this.mainRoute).getList();
 
-                return $http.get(self.urlBase + self.mainRoute, {
-                    headers:{
-                        'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
-                        'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
-                    }
-                });
+                return $http.get(self.urlBase + self.mainRoute, { headers: self.headers });
             };
 
             this.getById = function(id) {
@@ -40,12 +42,7 @@
 
                 // return Restangular.one(this.mainRoute, id).get();
 
-                return $http.get(self.urlBase + self.mainRoute + '/' + id, {
-                    headers: {
-                        'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
-                        'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
-                    }
-                });
+                return $http.get(self.urlBase + self.mainRoute + '/' + id, { headers: self.headers });
             };
 
             this.incluir = function(model) {
@@ -54,28 +51,24 @@
                 // return Restangular.all(self.mainRoute).post(model);
 
                 return $http.post(self.urlBase + self.mainRoute, model, {
-                    headers:{
-                        'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
-                        'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
-                        'Content-Type':'application/json'
-                    }
+                    headers: self.headers
+                    // headers:{
+                    //     'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
+                    //     'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
+                    //     'Content-Type':'application/json'
+                    // }
                 });
             };
 
-            this.editar = function(model){
+            this.editar = function(model) {
 
                 // if (!model.put) throw "Objeto a ser alterado inválido";
                 if (!this.mainRoute) throw "mainRoute não configurada.";
 
                 // return model.put();
 
-                return $http.put(self.urlBase + self.mainRoute + '/' + model.objectId, model, {
-                    headers:{
-                        'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
-                        'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
-                        'Content-Type':'application/json'
-                    }
-                });
+                return $http.put(self.urlBase + self.mainRoute + '/' + model.objectId, 
+                    model, { headers: self.headers });
             };
 
             this.excluir = function(id) {
@@ -83,13 +76,7 @@
 
                 // return Restangular.one(this.mainRoute, id).remove();
 
-                return $http.delete(self.urlBase + self.mainRoute + '/' + id, {
-                    headers:{
-                        'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
-                        'X-Parse-REST-API-Key':PARSE_CREDENTIALS.REST_API_KEY,
-                        'Content-Type':'application/json'
-                    }
-                });
+                return $http.delete(self.urlBase + self.mainRoute + '/' + id, { headers: self.headers });
             };
        	}
 

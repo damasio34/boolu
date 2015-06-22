@@ -5,7 +5,7 @@
 
 		if (!LoginService.usuarioAutenticado()) {
 			$state.go('login');
-			throw "Usuário não autenticado.";
+			console.log("Usuário não autenticado.");
 		};
 
 		$scope.Sair = function() { 

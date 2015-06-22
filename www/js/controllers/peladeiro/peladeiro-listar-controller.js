@@ -7,7 +7,8 @@
 		this.listarItens();
 
 		// $scope.data = {};
-		// $scope.data.showDelete = true;
+		$scope.showDelete = false;
+		console.log($scope.showDelete);
 
 	});
 

@@ -6,10 +6,14 @@
 
 		var _service = function() {
 
-			this.efetuarLogin = function (_usuario, _senha) {
+			this.getToken = function(){
+				return WebStorageService.getLocalStorage('_$token') || WebStorageService.getSessionStorage('_$token');
+			};
+
+			this.efetuarLogin = function (model) {
                 // var whereQuery = {type: subtype};
 
-                // console.log(CryptSha1Service.hash(_senha));
+				if (!!getToken()) this.logOut();
 
                 return $http.get('https://api.parse.com/1/login', {
 
@@ -19,7 +23,7 @@
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
                     params: {
-                     	username: _usuario, password: CryptSha1Service.hash(_senha),
+                     	username: model.usuario, password: CryptSha1Service.hash(model.senha),
                       	// where: {username: _usuario, password: _senha},
                      	// limit: 2,
                      	// count: 1
@@ -28,7 +32,8 @@
 
                 }).success(function(data, status) {
 					if (status == 200 && !!data.sessionToken) {
-						WebStorageService.setSessionStorage('_$token', data.sessionToken);
+						if (model.salvarSenha) WebStorageService.setLocalStorage('_$token', data.sessionToken);
+						else WebStorageService.setSessionStorage('_$token', data.sessionToken);
 					}
                 }).error(function (data, status) {
                 	console.log(status);
@@ -37,7 +42,7 @@
 			};
 
 			this.getUsuario = function() {
-				var token = JSON.parse(sessionStorage.getItem('_$token'));
+				var token = this.getToken();
 				return $http.get('https://api.parse.com/1/users/me', {
                     headers: {
                         'X-Parse-Application-Id': PARSE_CREDENTIALS.APP_ID,
@@ -54,13 +59,13 @@
 			};
 
 			this.usuarioAutenticado = function() {
-				var token = sessionStorage.getItem('_$token');
+				var token = this.getToken();
 				if (!token || token == null) return false;
 				else return true;				
 			};
 
 			this.logOut = function() {
-				var token = JSON.parse(sessionStorage.getItem('_$token'));
+				var token = this.getToken();
 				if (!!token) {
 					return $http.post('https://api.parse.com/1/logout', '', {
 
@@ -74,6 +79,8 @@
 						if (status == 200) {
 							sessionStorage.removeItem('_$token');
 							sessionStorage.clear();
+							localStorage.removeItem('_$token');
+							localStorage.clear();
 						}
 	                }).error(function (data, status) {
 	                	// console.log(status);
@@ -82,11 +89,6 @@
 				};	
 			};
 		};
-
-		// var base = new RestServiceBase();
-		// base.setMainRoute('_User');
-		// // Herdando a implementação de RestServiceBase
-		// _service.prototype = base;
 
 		return new _service();
 

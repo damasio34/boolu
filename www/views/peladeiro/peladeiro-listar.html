@@ -1,22 +1,10 @@
 <ion-view title="Peladeiros">
-<!-- 	<ion-header-bar class="bar-positive">
-
-	    <div class="buttons">
-	        <button class="button button-icon icon ion-minus-round" ng-click="data.showDelete = !data.showDelete;"></button>
-	        <h1 class="title">Todos os itens</h1>
-	        <button class="button" ui-sref="createTodo">Novo</button>
-	    </div>
-
-	</ion-header-bar> -->
-
-	<!-- <ion-nav-buttons side="right">
-    	<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-  	</ion-nav-buttons> -->
+	<ion-nav-buttons side="right">
+    	<button class="button button-icon icon ion-android-remove" ng-click="showDelete = !showDelete"></button>    	
+  	</ion-nav-buttons>
 
 	<ion-content>
-
 		<ion-refresher spinner="android" on-refresh="atualizarItens()"></ion-refresher>
-
 		<div id="search-box" class="bar bar-header item-input-inset">
 	        <div class="item-input-wrapper">
           		<i class="icon ion-search placeholder-icon"></i>
@@ -24,14 +12,11 @@
 	          	<i class="clear-search icon ion-android-close" ng-click="limparBuscar()"></i>
 	        </div>
       	</div>
-
-	 	<ion-list show-delete="data.showDelete">
+	 	<ion-list show-delete="showDelete">
 	        <ion-item ng-repeat="item in itens | orderBy: 'nome'| filter: queryBuscar" item="item" href="#/app/peladeiro/editar/{{item.objectId}}">
 	            {{item.nome}} {{item.sobrenome}}
-	            <ion-delete-button class="ion-android-close icon-right" ng-click="onItemDelete(item)"></ion-delete-button>
+	            <ion-delete-button class="ion-android-close" ng-click="onItemDelete(item)"></ion-delete-button>
 	        </ion-item>
-	    </ion-list>	   
-    
+	    </ion-list>
 	</ion-content>
-
 </ion-view>

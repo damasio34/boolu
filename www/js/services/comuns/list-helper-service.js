@@ -21,6 +21,8 @@
 
             if (!$scope) throw "Variável '$modelService' precisa ser definda";
 
+            // $scope.showDelete = true;
+
             if (!!$scope.queryBuscar) {
 	            $scope.limparBuscar = function() {
 		    		$scope.queryBuscar = '';

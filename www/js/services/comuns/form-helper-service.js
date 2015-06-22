@@ -34,19 +34,29 @@
             }, function(ex) { throw ex; });
         };
 
+        // Verifica se os campos do formulario atendem as regras estabelecidas.
+        var _formularioEhValido = function($scope) {
+            if (!$scope.formulario) throw "Objeto Formulário não definido";
+
+            return $scope.formulario.$valid;
+        };
+
         var _canSubmit = function($scope) {
-            return $scope.usuarioAlterouFormulario();
+            return $scope.formularioEhValido() && $scope.usuarioAlterouFormulario();
         };
 
         // Determina o que fazer quando o usuário submter o formulário.
-        var _submitForm = function($scope) {
-            if ($scope.modoEdicao) {
-                if (!$scope.usuarioAlterouFormulario()) {
-                    // AppNotificationsService.logWarning('Não há alterações a serem salvas.');
-                    return;
-                };
-                return $scope.salvarAlteracao();
-            } else return $scope.salvarInclusao();
+        var _submitForm = function($scope, formulario) {
+            $scope.formulario = formulario;
+            if ($scope.formularioEhValido()) {
+                if ($scope.modoEdicao) {
+                    if (!$scope.usuarioAlterouFormulario()) {
+                        // AppNotificationsService.logWarning('Não há alterações a serem salvas.');
+                        return;
+                    };
+                    return $scope.salvarAlteracao();
+                } else return $scope.salvarInclusao();
+            };
         };
 
         // verifica se há alterações a serem desfeitas no formulario.
@@ -129,11 +139,14 @@
             $scope.salvarAlteracao = function() {
                 return _salvarAlteracao($scope.Model, $modelService, $scope);
             };
+            $scope.formularioEhValido = function () {
+                return _formularioEhValido($scope);
+            };
             $scope.canSubmit = function() {
                 return _canSubmit($scope);
             };
-            $scope.submitForm = function() {
-                return _submitForm($scope);
+            $scope.submitForm = function(formulario) {                
+                return _submitForm($scope, formulario);
             };
             $scope.usuarioAlterouFormulario = function() {
                 return _usuarioAlterouFormulario($scope);
