@@ -13,7 +13,7 @@
 			this.efetuarLogin = function (model) {
                 // var whereQuery = {type: subtype};
 
-				if (!!getToken()) this.logOut();
+				if (!!this.getToken()) this.logOut();
 
                 return $http.get('https://api.parse.com/1/login', {
 
