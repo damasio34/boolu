@@ -8,7 +8,9 @@
 
 		// $scope.data = {};
 		$scope.showDelete = false;
-		console.log($scope.showDelete);
+		$scope.exibeBotaoExcluir = function() {
+			$scope.showDelete = !$scope.showDelete;
+		};
 
 	});
 

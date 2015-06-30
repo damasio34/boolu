@@ -1,6 +1,6 @@
 <ion-view title="Peladeiros">
 	<ion-nav-buttons side="right">
-    	<button class="button button-icon icon ion-android-remove" ng-click="showDelete = !showDelete"></button>    	
+    	<button class="button button-icon icon ion-android-remove" ng-click="exibeBotaoExcluir()"></button>
   	</ion-nav-buttons>
 
 	<ion-content>
@@ -15,8 +15,10 @@
 	 	<ion-list show-delete="showDelete">
 	        <ion-item ng-repeat="item in itens | orderBy: 'nome'| filter: queryBuscar" item="item" href="#/app/peladeiro/editar/{{item.objectId}}">
 	            {{item.nome}} {{item.sobrenome}}
-	            <ion-delete-button class="ion-android-close" ng-click="onItemDelete(item)"></ion-delete-button>
+	            <ion-delete-button class="ion-android-close" ng-click="excluirItem(item)"></ion-delete-button>
 	        </ion-item>
 	    </ion-list>
 	</ion-content>
+	<nav mfb-menu position="br" ui-sref="app.peladeiroIncluir" href="#/app/peladeiro/incluir" resting-icon="ion-plus-round" active-icon="ion-plus-round">
+  	</nav>
 </ion-view>

@@ -1,6 +1,13 @@
 (function(angular){
 
     var app = angular.module('boolu');
+
+    app.config(function($ionicConfigProvider) {
+  		// note that you can also chain configs
+	  	$ionicConfigProvider.backButton.previousTitleText(false);
+	  	$ionicConfigProvider.backButton.text('').icon('ion-android-arrow-back');
+	});
+
 	// app.config(function($ionicAppProvider) {
 
 	//     // Identify app
